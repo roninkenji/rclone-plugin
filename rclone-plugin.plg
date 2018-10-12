@@ -2,21 +2,29 @@
 <!DOCTYPE PLUGIN [
 <!ENTITY name      "rclone-plugin">
 <!ENTITY author    "Kenji">
-<!ENTITY version   "2018.10.12">
+<!ENTITY version   "2020.01.20">
 <!ENTITY md5       "">
 <!ENTITY launch    "">
 <!ENTITY plugdir   "/usr/local/emhttp/plugins/&name;">
 <!ENTITY confdir   "/boot/config/plugins/&name;">
 <!ENTITY github    "roninkenji/&name;">
 <!ENTITY pluginURL "https://raw.githubusercontent.com/&github;/master/&name;.plg">
-<!ENTITY rcloneVersion "v1.43.1">
-<!ENTITY rcloneURL "https://downloads.rclone.org/rclone-&rcloneVersion;-linux-amd64.zip">
-<!ENTITY rcloneMD5 "2f2526df71c0f72aa0b73082b97829d9">
+<!ENTITY rcloneVersion "v1.50.2">
+<!ENTITY rcloneURL "https://downloads.rclone.org/&rcloneVersion;/rclone-&rcloneVersion;-linux-amd64.zip">
+<!ENTITY rcloneMD5 "dbe0c80625bf0a674a9f3922d5a6768d">
 ]>
 
 <PLUGIN name="&name;" author="&author;" version="&version;" pluginURL="&pluginURL;">
-
   <CHANGES>
+###2020.01.20###
+- Version bump to 1.50.2
+
+###2019.07.01###
+- Version bump to 1.48.0
+
+###2018.10.29a###
+- Version bump to 1.44
+
 ###2018.10.12###
 - Initial commit
   </CHANGES>
@@ -26,23 +34,19 @@
     <MD5>&rcloneMD5;</MD5>
   </FILE>
 
-  <!--
-  <FILE Name="/root/.rclone/account.conf">
+  <FILE Name="/usr/local/bin/rclone">
     <INLINE>
-ACCOUNT_CONF_PATH="&confdir;/account.conf"
+#!/bin/bash
+export XDG_CONFIG_HOME=/boot/config/plugins
+/usr/local/bin/rclone.bin "$@"
     </INLINE>
   </FILE>
-
-  <FILE Name="&plugdir;/README.md">
-    <INLINE>
-    </INLINE>
-  </FILE>
-  -->
 
   <FILE Run="/bin/bash" Method="install">
     <INLINE>
     unzip &confdir;/rclone-&rcloneVersion;-linux-amd64.zip -d /usr/local/
-    install -m 755 /usr/local/rclone-&rcloneVersion;-linux-amd64/rclone /usr/local/bin
+    install -m 755 /usr/local/rclone-&rcloneVersion;-linux-amd64/rclone /usr/local/bin/rclone.bin
+    chmod 755 /usr/local/bin/rclone
     rm -rf /usr/local/rclone-&rcloneVersion;-linux-amd64
     </INLINE>
   </FILE>
@@ -53,6 +57,7 @@ ACCOUNT_CONF_PATH="&confdir;/account.conf"
   <FILE Run="/bin/sh" Method="remove">
     <INLINE>
     rm -f /usr/local/bin/rclone
+    rm -f /usr/local/bin/rclone.bin
     rm -f &confdir;/rclone-&rcloneVersion;-linux-amd64.zip
     </INLINE>
   </FILE>
