@@ -2,23 +2,25 @@
 <!DOCTYPE PLUGIN [
 <!ENTITY name      "rclone-plugin">
 <!ENTITY author    "Kenji">
-<!ENTITY version   "2020.08.02">
+<!ENTITY version   "2020.11.21">
 <!ENTITY md5       "">
 <!ENTITY launch    "">
 <!ENTITY plugdir   "/usr/local/emhttp/plugins/&name;">
 <!ENTITY confdir   "/boot/config/plugins/&name;">
 <!ENTITY github    "roninkenji/&name;">
 <!ENTITY pluginURL "https://raw.githubusercontent.com/&github;/master/&name;.plg">
-<!ENTITY rcloneVersion "v1.52.2">
+<!ENTITY rcloneVersion "v1.53.3">
 <!ENTITY rcloneURL "https://downloads.rclone.org/&rcloneVersion;/rclone-&rcloneVersion;-linux-amd64.zip">
-<!ENTITY rcloneMD5 "6e9d53f77ed6f8252576335935fab25d">
+<!ENTITY rcloneMD5 "fc210fb4bc95ee00c18573f4a5a06246">
 ]>
 
 <PLUGIN name="&name;" author="&author;" version="&version;" pluginURL="&pluginURL;">
   <CHANGES>
+###2020.11.21###
+- Version bump to 1.53.3
+
 ###2020.08.02###
 - Version bump to 1.52.2
-
 
 ###2020.01.20###
 - Version bump to 1.50.2
